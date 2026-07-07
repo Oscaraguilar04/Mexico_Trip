@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Forest river travel illustration">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6f0e8"/><stop offset="1" stop-color="#fff3c7"/></linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#66a6a4"/><stop offset="1" stop-color="#1f6f73"/></linearGradient>
+    <pattern id="tile" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M40 0l40 40-40 40L0 40z" fill="none" stroke="#f1c46d" stroke-width="3" opacity=".25"/><circle cx="40" cy="40" r="7" fill="#b85c38" opacity=".25"/></pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#sky)"/>
+  <rect width="1200" height="720" fill="url(#tile)"/>
+  <path d="M0 455C180 330 285 360 430 260c170-118 310-138 466 6 124 114 206 122 304 74v380H0z" fill="#29533c"/>
+  <path d="M0 505c190-100 300-55 430-125 153-82 285-99 455 45 125 106 220 111 315 65v230H0z" fill="#3f744b"/>
+  <path d="M495 720c60-80 102-146 84-222-20-89 87-128 162-108 136 36 143 147 248 157 91 8 142 63 170 173z" fill="url(#river)" opacity=".95"/>
+  <path d="M540 720c40-63 70-122 55-184-13-58 66-91 118-76 100 29 116 120 198 130 60 7 100 49 120 130z" fill="#96d4cd" opacity=".35"/>
+  <circle cx="973" cy="157" r="68" fill="#f3bd55"/>
+  <g fill="#133423"><path d="M115 455l60-170 62 170z"/><path d="M196 473l78-230 85 230z"/><path d="M850 455l55-180 74 180z"/><path d="M930 487l83-250 100 250z"/></g>
+  <g transform="translate(150 145)">
+    <path d="M0 25h210v70H0z" fill="#f8df9f" opacity=".95"/>
+    <path d="M0 25L105-35 210 25z" fill="#b85c38"/>
+    <rect x="28" y="45" width="34" height="50" fill="#25543f"/><rect x="80" y="43" width="42" height="26" fill="#84b7b0"/><rect x="145" y="43" width="42" height="26" fill="#84b7b0"/>
+  </g>
+  <text x="80" y="640" font-family="Georgia, serif" font-size="56" fill="#fff8e7" font-weight="700">Colima en Febrero</text>
+</svg>
