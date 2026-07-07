@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Colima February Trip Guide</title>
-  <meta name="description" content="A responsive Mexico travel guide and group savings dashboard for a February trip to Colima and Manzanillo." />
+  <title>Colima February Trip | México</title>
+  <meta name="description" content="A curated travel guide and group savings dashboard for a February trip to Colima and Manzanillo, Mexico." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -12,19 +15,19 @@
     <div class="container fund-inner">
       <a class="brand" href="index.html" aria-label="Home">
         <span class="brand-mark"></span>
-        <span><h1 data-trip-name>Colima Family Trip</h1><small>February · 7 travelers · Mexico</small></span>
+        <span><h1 data-trip-name>Colima Family Trip</h1><small>February · 7 travelers · México</small></span>
       </a>
       <div class="fund-status" aria-live="polite">
         <div class="fund-numbers">
-          <span>Saved: <strong data-saved>$0</strong></span>
-          <span>Total cost: <strong data-cost>$0</strong></span>
-          <span>Left: <strong data-left>$0</strong></span>
+          <span>Saved <strong data-saved>$0</strong></span>
+          <span>Goal <strong data-cost>$0</strong></span>
+          <span>Remaining <strong data-left>$0</strong></span>
           <span><strong data-percent>0%</strong> funded</span>
         </div>
         <div class="progress-track" aria-label="Trip savings progress"><div class="progress-fill"></div></div>
       </div>
       <nav class="nav" aria-label="Main navigation">
-        <a href="index.html">Savings</a>
+        <a href="index.html" aria-current="page">Savings</a>
         <a href="colima.html">Colima</a>
         <a href="manzanillo.html">Manzanillo</a>
       </nav>
@@ -34,92 +37,119 @@
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <span class="kicker">Traditional Hispanic travel planner</span>
-          <h2>Mexico trip hub for Colima.</h2>
-          <p>A warm, Pinterest-style travel guide mixed with Airbnb planning and Expedia-style budget tracking. This version is built for a February trip with seven people, Colima pueblos, Manzanillo beaches, family activities, and a shared savings dashboard.</p>
+        <div class="hero-copy reveal">
+          <span class="kicker">Colima · Manzanillo · February 2027</span>
+          <h2>Your Mexico<br><em style="font-style:italic;color:var(--terracotta)">family escape.</em></h2>
+          <p>A curated travel board for seven — colonial pueblos, volcano views, Pacific beaches, regional cuisine, and a shared savings dashboard to fund the journey together.</p>
           <div class="button-row">
-            <a class="btn" href="#savings">Add trip savings</a>
-            <a class="btn secondary" href="colima.html">Explore Colima guide</a>
+            <a class="btn" href="#savings">Open savings board</a>
+            <a class="btn secondary" href="colima.html">Explore Colima</a>
           </div>
-          <div class="pattern-strip" aria-hidden="true"><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span></div>
         </div>
-        <div class="hero-card">
-          <img src="assets/hero-river.svg" alt="Illustration of a forest river and pueblo for Colima in February" />
-          <div class="caption">
-            <strong>Design mood:</strong> forest greens, rivers, volcano views, beach days, papel picado details, and old-town Mexican warmth.
+        <div class="hero-visual reveal reveal-delay-2">
+          <img class="hero-img-main" src="https://images.unsplash.com/photo-1583422409516-2895a77bf413?auto=format&fit=crop&w=900&q=80" alt="Colonial architecture in Mexico" width="900" height="1100">
+          <img class="hero-img-accent" src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=600&q=80" alt="Pacific coastline at Manzanillo" width="600" height="700">
+          <div class="hero-stat">
+            <strong>7</strong>
+            <span>Travelers · 14 days</span>
           </div>
         </div>
       </div>
     </section>
+
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span class="marquee-item">Comala</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Manzanillo</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Centro Histórico</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Laguna La María</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Cuyutlán</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Nogueras</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Playa Miramar</span><span class="marquee-item"><em>·</em></span>
+        </div>
+        <div class="marquee-track">
+          <span class="marquee-item">Comala</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Manzanillo</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Centro Histórico</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Laguna La María</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Cuyutlán</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Nogueras</span><span class="marquee-item"><em>·</em></span>
+          <span class="marquee-item">Playa Miramar</span><span class="marquee-item"><em>·</em></span>
+        </div>
+      </div>
+    </div>
 
     <section id="savings" class="section">
-      <div class="container dashboard">
-        <div class="card pad">
-          <div class="section-title">
-            <div><h3>Trip savings dashboard</h3><p>Track the group goal, who added money, and how close the trip is to being fully funded.</p></div>
+      <div class="container">
+        <div class="section-title reveal">
+          <div>
+            <span class="kicker">Group fund</span>
+            <h3>Trip savings dashboard</h3>
+            <p>Track the group goal, log contributions, and see how close you are to a fully funded February adventure.</p>
           </div>
-          <div class="stat-grid">
-            <div class="stat"><span>Total trip cost</span><strong id="statTotal">$0</strong></div>
-            <div class="stat"><span>Saved so far</span><strong id="statSaved">$0</strong></div>
-            <div class="stat"><span>Remaining</span><strong id="statLeft">$0</strong></div>
-          </div>
-          <p class="helper">Starter estimate is editable. It assumes seven people and categories like LAX ⇄ Colima/Manzanillo flights, Airbnb/lodging, food, activities, transportation, and an emergency buffer.</p>
-
-          <hr style="border:0;border-top:1px solid rgba(36,84,59,.12);margin:22px 0">
-
-          <form id="contributionForm">
-            <div class="form-row three">
-              <label>Who is adding money?
-                <select id="memberSelect"></select>
-              </label>
-              <label>Amount
-                <input id="amountInput" type="number" min="1" step="1" placeholder="100" />
-              </label>
-              <label>Note
-                <input id="noteInput" placeholder="Cash, Zelle, Venmo, paycheck" />
-              </label>
-            </div>
-            <button class="btn clay" type="submit">Add to trip savings</button>
-            <p class="helper">This prototype logs savings. It does not connect to a bank or hold real money.</p>
-          </form>
         </div>
-
-        <aside class="card pad">
-          <h3 style="font-family:Georgia,serif;margin-top:0">Seven-person fund</h3>
-          <div class="stat" style="margin-bottom:14px"><span>Estimated fair share per traveler</span><strong id="statEach">$0</strong></div>
-          <div id="memberList" class="member-list"></div>
-          <div class="button-row">
-            <button id="exportTrip" class="btn river" type="button">Copy group snapshot link</button>
-            <button id="resetDemo" class="btn secondary" type="button">Reset</button>
+        <div class="dashboard">
+          <div class="card pad reveal">
+            <div class="stat-grid">
+              <div class="stat"><span>Total cost</span><strong id="statTotal">$0</strong></div>
+              <div class="stat"><span>Saved</span><strong id="statSaved">$0</strong></div>
+              <div class="stat"><span>Remaining</span><strong id="statLeft">$0</strong></div>
+            </div>
+            <p class="helper">Starter estimate covers LAX ⇄ Colima/Manzanillo flights, group lodging, food, transport, activities, and an emergency buffer for seven travelers.</p>
+            <hr>
+            <form id="contributionForm">
+              <div class="form-row three">
+                <label>Traveler
+                  <select id="memberSelect"></select>
+                </label>
+                <label>Amount
+                  <input id="amountInput" type="number" min="1" step="1" placeholder="100" />
+                </label>
+                <label>Note
+                  <input id="noteInput" placeholder="Zelle, Venmo, cash" />
+                </label>
+              </div>
+              <button class="btn clay" type="submit">Add contribution</button>
+              <p class="helper">Planning board only — no real payments processed here.</p>
+            </form>
           </div>
-          <p class="helper">Send the snapshot link after updating the numbers. For live multi-person syncing, this needs a backend such as Supabase/Firebase plus your chosen payment method.</p>
-        </aside>
+          <aside class="card pad reveal reveal-delay-1">
+            <h3>Seven-person fund</h3>
+            <div class="stat" style="margin:1rem 0"><span>Fair share per traveler</span><strong id="statEach">$0</strong></div>
+            <div id="memberList" class="member-list"></div>
+            <div class="button-row">
+              <button id="exportTrip" class="btn river" type="button">Copy snapshot link</button>
+              <button id="resetDemo" class="btn secondary" type="button">Reset</button>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container grid two">
-        <div class="card pad">
-          <h3 style="font-family:Georgia,serif;margin-top:0">Edit the total trip cost</h3>
-          <table class="budget-table" aria-label="Trip budget list">
-            <thead><tr><th>Cost item</th><th>Amount</th></tr></thead>
-            <tbody id="budgetBody"></tbody>
-          </table>
-          <form id="budgetForm" style="margin-top:16px">
-            <div class="form-row">
-              <label>Cost name<input id="budgetLabel" placeholder="Passport renewals, rental car, extra hotel night" /></label>
-              <label>Amount<input id="budgetAmount" type="number" min="1" step="1" placeholder="350" /></label>
+    <section class="section section--dark">
+      <div class="container">
+        <div class="grid two">
+          <div class="card pad reveal" style="background:rgba(255,252,248,0.04);border-color:rgba(255,255,255,0.08)">
+            <h3>Edit trip costs</h3>
+            <table class="budget-table" aria-label="Trip budget" style="margin-top:1rem">
+              <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+              <tbody id="budgetBody"></tbody>
+            </table>
+            <form id="budgetForm" style="margin-top:1.5rem">
+              <div class="form-row">
+                <label>Cost name<input id="budgetLabel" placeholder="Rental car, extra night" /></label>
+                <label>Amount<input id="budgetAmount" type="number" min="1" step="1" placeholder="350" /></label>
+              </div>
+              <div class="button-row"><button class="btn clay" type="submit">Add item</button><button id="clearBudget" class="btn secondary" type="button">Clear</button></div>
+            </form>
+          </div>
+          <div class="card pad reveal reveal-delay-1" style="background:rgba(255,252,248,0.04);border-color:rgba(255,255,255,0.08)">
+            <h3>Rename travelers</h3>
+            <div id="memberNameEditor" style="margin-top:1rem"></div>
+            <div class="alert" style="margin-top:1.5rem">
+              <strong>Privacy note:</strong> do not enter bank details. Use this as the planning board, then collect through your group's trusted payment method.
             </div>
-            <div class="button-row"><button class="btn" type="submit">Add cost item</button><button id="clearBudget" class="btn secondary" type="button">Clear costs</button></div>
-          </form>
-        </div>
-
-        <div class="card pad">
-          <h3 style="font-family:Georgia,serif;margin-top:0">Rename the travelers</h3>
-          <div id="memberNameEditor"></div>
-          <div class="alert" style="margin-top:14px">
-            <strong>Money safety note:</strong> do not enter bank details here. Use this as the planning board, then collect money through the method your group actually trusts.
           </div>
         </div>
       </div>
@@ -127,34 +157,59 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-title">
-          <div><h3>Trip mood board</h3><p>A quick visual map of the type of Colima trip this website is planning for: pueblos, food, rivers, volcano views, beach days, and family memories.</p></div>
+        <div class="section-title reveal">
+          <div>
+            <span class="kicker">Mood board</span>
+            <h3>The trip, visualized</h3>
+            <p>Pueblos, food, rivers, volcano views, beach days, and the memories you're saving for.</p>
+          </div>
         </div>
         <div class="masonry">
-          <article class="card pin tall"><img src="assets/comala-volcano.svg" alt="Comala volcano and white pueblo illustration"><div class="card-content"><span class="tag">Pueblo Mágico</span><h4>Comala day</h4><p>White houses, coffee, ponche, plaza wandering, and volcano views.</p></div></article>
-          <article class="card pin short"><img src="assets/food.svg" alt="Colima food and coffee illustration"><div class="card-content"><span class="tag clay">Food</span><h4>Sabores de Colima</h4><p>Tatemado, seafood, coffee, ponche, pan dulce, and local snacks.</p></div></article>
-          <article class="card pin"><img src="assets/manzanillo-beach.svg" alt="Manzanillo beach illustration"><div class="card-content"><span class="tag river">Beach</span><h4>Manzanillo</h4><p>Family beach day, seafood by the ocean, photos, and sunset.</p></div></article>
-          <article class="card pin"><img src="assets/hiking.svg" alt="Forest hiking illustration"><div class="card-content"><span class="tag">Nature</span><h4>Rivers & trails</h4><p>Laguna La María, Suchitlán, Los Amiales, and easy nature stops.</p></div></article>
-          <article class="card pin short"><img src="assets/colima-city.svg" alt="Historic center of Colima illustration"><div class="card-content"><span class="tag clay">City</span><h4>Centro Histórico</h4><p>Architecture, gardens, museums, cafés, and plazas.</p></div></article>
-          <article class="card pin"><img src="assets/sunset.svg" alt="Pacific sunset illustration"><div class="card-content"><span class="tag river">Evening</span><h4>Golden-hour plan</h4><p>Plan one night around photos, dinner, and the Pacific sunset.</p></div></article>
+          <article class="card pin tall reveal">
+            <div class="img-wrap"><img src="https://images.unsplash.com/photo-1590073242677-ac794a726217?auto=format&fit=crop&w=700&q=80" alt="Comala pueblo with volcano views" loading="lazy"></div>
+            <div class="card-content"><span class="tag">Pueblo Mágico</span><h4>Comala day</h4><p>White houses, coffee, ponche, plaza wandering, and volcano views.</p></div>
+          </article>
+          <article class="card pin short reveal reveal-delay-1">
+            <div class="img-wrap"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=700&q=80" alt="Traditional Mexican cuisine" loading="lazy"></div>
+            <div class="card-content"><span class="tag clay">Food</span><h4>Sabores de Colima</h4><p>Tatemado, seafood, coffee, ponche, and pan dulce.</p></div>
+          </article>
+          <article class="card pin reveal reveal-delay-2">
+            <div class="img-wrap"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=700&q=80" alt="Manzanillo beach" loading="lazy"></div>
+            <div class="card-content"><span class="tag river">Beach</span><h4>Manzanillo</h4><p>Family beach day, seafood by the ocean, and golden sunset.</p></div>
+          </article>
+          <article class="card pin reveal">
+            <div class="img-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80" alt="Forest trails in Colima highlands" loading="lazy"></div>
+            <div class="card-content"><span class="tag">Nature</span><h4>Rivers &amp; trails</h4><p>La María, Suchitlán, Los Amiales, and easy nature stops.</p></div>
+          </article>
+          <article class="card pin short reveal reveal-delay-1">
+            <div class="img-wrap"><img src="https://images.unsplash.com/photo-1518105778042-126173f04020?auto=format&fit=crop&w=700&q=80" alt="Historic center of Colima" loading="lazy"></div>
+            <div class="card-content"><span class="tag clay">City</span><h4>Centro Histórico</h4><p>Architecture, gardens, museums, cafés, and plazas.</p></div>
+          </article>
+          <article class="card pin reveal reveal-delay-2">
+            <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80" alt="Pacific sunset" loading="lazy"></div>
+            <div class="card-content"><span class="tag river">Evening</span><h4>Golden hour</h4><p>One night around photos, dinner, and the Pacific sunset.</p></div>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container card pad sources">
-        <h3 style="font-family:Georgia,serif;color:var(--pine);margin-top:0">Source notes used for guide content</h3>
-        <p>Guide sections were drafted from public tourism and travel sources, including Visit Mexico, Visit Colima, INEGI municipal references, and the U.S. State Department Mexico Travel Advisory. Always check official travel/safety guidance before booking.</p>
+      <div class="container card pad sources reveal">
+        <h3>Source notes</h3>
+        <p style="margin-top:0.75rem">Guide content draws from Visit Mexico, Visit Colima, INEGI municipal references, and the U.S. State Department Mexico Travel Advisory. Always verify official guidance before booking.</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <div><strong>Colima February Trip</strong><br>Traditional Hispanic travel guide + group savings board.</div>
-      <div>Built as a static responsive prototype. Open on phone, laptop, or upload to Netlify/Vercel.</div>
+      <div><strong>Colima Family Trip</strong><br>Curated guide · group savings · February México</div>
+      <div><a href="colima.html">Colima guide</a> · <a href="manzanillo.html">Manzanillo guide</a></div>
     </div>
+    <div class="container footer-bottom">Photography via Unsplash · Built for phone &amp; desktop</div>
   </footer>
+
   <script src="app.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>

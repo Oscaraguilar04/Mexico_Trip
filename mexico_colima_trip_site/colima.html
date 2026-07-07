@@ -3,37 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Things to Do in Colima | February Trip Guide</title>
+  <title>Colima Guide | February Trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <header class="top-fund">
   <div class="container fund-inner">
-    <a class="brand" href="index.html"><span class="brand-mark"></span><span><h1 data-trip-name>Colima Family Trip</h1><small>February · 7 travelers · Mexico</small></span></a>
-    <div class="fund-status"><div class="fund-numbers"><span>Saved: <strong data-saved>$0</strong></span><span>Total cost: <strong data-cost>$0</strong></span><span>Left: <strong data-left>$0</strong></span><span><strong data-percent>0%</strong> funded</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
-    <nav class="nav"><a href="index.html">Savings</a><a href="colima.html">Colima</a><a href="manzanillo.html">Manzanillo</a></nav>
+    <a class="brand" href="index.html"><span class="brand-mark"></span><span><h1 data-trip-name>Colima Family Trip</h1><small>February · 7 travelers · México</small></span></a>
+    <div class="fund-status"><div class="fund-numbers"><span>Saved <strong data-saved>$0</strong></span><span>Goal <strong data-cost>$0</strong></span><span>Remaining <strong data-left>$0</strong></span><span><strong data-percent>0%</strong> funded</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
+    <nav class="nav"><a href="index.html">Savings</a><a href="colima.html" aria-current="page">Colima</a><a href="manzanillo.html">Manzanillo</a></nav>
   </div>
 </header>
 <main>
   <section class="page-hero">
     <div class="container page-hero-inner">
-      <span class="kicker">Pueblos · rivers · volcano views</span>
-      <h2>Things to do in Colima.</h2>
-      <p>Use this page like a Pinterest board and a mini Expedia guide. Filter by vibe, save places to the plan, and build a trip around Comala, Colima City, Nogueras, Cuyutlán, rivers, haciendas, food, and the state’s pueblo-style municipalities.</p>
-      <div class="button-row"><a class="btn" href="#guide">Browse activities</a><a class="btn secondary" href="manzanillo.html">Go to Manzanillo</a></div>
+      <div class="page-hero-text reveal">
+        <span class="kicker">Pueblos · rivers · volcano views</span>
+        <h2>Things to do<br>in Colima.</h2>
+        <p>Filter by vibe, save places to your plan, and build a trip around Comala, Colima City, Nogueras, Cuyutlán, rivers, haciendas, and regional cuisine.</p>
+        <div class="button-row"><a class="btn" href="#guide">Browse board</a><a class="btn secondary" href="manzanillo.html">Manzanillo →</a></div>
+      </div>
+      <div class="page-hero-image reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1590073242677-ac794a726217?auto=format&fit=crop&w=900&q=80" alt="Colonial pueblo in Colima state" width="900" height="600">
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container alert">
-      <strong>Travel-smart note:</strong> Colima currently appears in U.S. State Department guidance as a high-risk state, with specific limited guidance for Manzanillo tourist/port areas. Treat this website as a planning prototype, then verify official guidance, routes, local family advice, and transportation before locking the trip.
+  <section class="section" style="padding-top:0">
+    <div class="container alert reveal">
+      <strong>Travel-smart note:</strong> Colima appears in U.S. State Department guidance as a high-risk state, with limited guidance for Manzanillo tourist areas. Verify official guidance, routes, and local advice before booking.
     </div>
   </section>
 
   <section id="guide" class="section">
     <div class="container">
-      <div class="section-title"><div><h3>Colima activity board</h3><p>Tap a filter to narrow the guide. Tap “save to plan” to build a saved list on this device.</p></div><div id="savedPlaces" class="tag-row"></div></div>
-      <div class="filterbar" aria-label="Activity filters">
+      <div class="section-title reveal">
+        <div><span class="kicker">Activity board</span><h3>Colima pins</h3><p>Tap a filter to narrow the guide. Save places to build your itinerary on this device.</p></div>
+        <div id="savedPlaces" class="tag-row"></div>
+      </div>
+      <div class="filterbar reveal" aria-label="Activity filters">
         <button class="filter active" data-filter="all">All</button>
         <button class="filter" data-filter="pueblo">Pueblos</button>
         <button class="filter" data-filter="nature">Nature</button>
@@ -43,72 +54,73 @@
       </div>
 
       <div class="grid three">
-        <article class="card guide-card" data-category="pueblo food nature history">
-          <img src="assets/comala-volcano.svg" alt="Comala pueblo and volcano illustration">
-          <div class="card-content"><span class="tag">Pueblo Mágico</span><h4>Comala: plaza, cafés, ponche, volcano views</h4><p>Traditional white houses, red-tile roofs, arcades, cafés, food, and a slow-town feel under the Volcano of Fire.</p><div class="meta"><span class="price-chip">Half day</span><button class="btn secondary" data-add-plan="Comala">Save to plan</button></div></div>
+        <article class="card guide-card reveal" data-category="pueblo food nature history">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1590073242677-ac794a726217?auto=format&fit=crop&w=800&q=80" alt="Comala pueblo and volcano views" loading="lazy"></div>
+          <div class="card-content"><span class="tag">Pueblo Mágico</span><h4>Comala: plaza, cafés, ponche</h4><p>White houses, red-tile roofs, arcades, and a slow-town feel under the Volcano of Fire.</p><div class="meta"><span class="price-chip">Half day</span><button class="btn secondary" data-add-plan="Comala">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="history pueblo nature">
-          <img src="assets/nogueras.svg" alt="Nogueras hacienda illustration">
-          <div class="card-content"><span class="tag clay">Hacienda</span><h4>Nogueras cultural stop</h4><p>An old hacienda near Comala with gardens, workshops, art, and the Alejandro Rangel Hidalgo museum atmosphere.</p><div class="meta"><span class="price-chip">2–3 hrs</span><button class="btn secondary" data-add-plan="Nogueras">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-1" data-category="history pueblo nature">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" alt="Colonial hacienda gardens" loading="lazy"></div>
+          <div class="card-content"><span class="tag clay">Hacienda</span><h4>Nogueras cultural stop</h4><p>Old hacienda near Comala with gardens, workshops, art, and the Alejandro Rangel Hidalgo museum.</p><div class="meta"><span class="price-chip">2–3 hrs</span><button class="btn secondary" data-add-plan="Nogueras">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="history food pueblo">
-          <img src="assets/colima-city.svg" alt="Colima historic center illustration">
-          <div class="card-content"><span class="tag clay">Centro</span><h4>Centro Histórico de Colima</h4><p>Plan a relaxed walk for history, architecture, gardens, cafés, photos, snacks, and a family dinner nearby.</p><div class="meta"><span class="price-chip">Easy</span><button class="btn secondary" data-add-plan="Centro Histórico de Colima">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-2" data-category="history food pueblo">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1518105778042-126173f04020?auto=format&fit=crop&w=800&q=80" alt="Colima historic center" loading="lazy"></div>
+          <div class="card-content"><span class="tag clay">Centro</span><h4>Centro Histórico de Colima</h4><p>History, architecture, gardens, cafés, photos, snacks, and a family dinner nearby.</p><div class="meta"><span class="price-chip">Easy</span><button class="btn secondary" data-add-plan="Centro Histórico de Colima">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="nature water food">
-          <img src="assets/hiking.svg" alt="Laguna La María hiking illustration">
-          <div class="card-content"><span class="tag river">Lagoon</span><h4>Laguna La María</h4><p>A volcanic lagoon area near Comala for easy trails, camping vibes, coffee, nature photos, and a cooler mountain feel.</p><div class="meta"><span class="price-chip">Nature day</span><button class="btn secondary" data-add-plan="Laguna La María">Save to plan</button></div></div>
+        <article class="card guide-card reveal" data-category="nature water food">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Laguna La María forest trails" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">Lagoon</span><h4>Laguna La María</h4><p>Volcanic lagoon near Comala for easy trails, coffee, nature photos, and cooler mountain air.</p><div class="meta"><span class="price-chip">Nature day</span><button class="btn secondary" data-add-plan="Laguna La María">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="nature water food">
-          <img src="assets/hiking.svg" alt="Suchitlán forest and bridge illustration">
-          <div class="card-content"><span class="tag">Birdwatching</span><h4>La Barranca de Suchitlán</h4><p>Easy nature stop with greenery, a river landscape, birdwatching, a hanging bridge vibe, and nearby local food.</p><div class="meta"><span class="price-chip">Easy</span><button class="btn secondary" data-add-plan="Suchitlán">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-1" data-category="nature water food">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Suchitlán canyon landscape" loading="lazy"></div>
+          <div class="card-content"><span class="tag">Birdwatching</span><h4>La Barranca de Suchitlán</h4><p>Green nature stop with a river landscape, birdwatching, hanging bridge, and local food.</p><div class="meta"><span class="price-chip">Easy</span><button class="btn secondary" data-add-plan="Suchitlán">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="water nature food">
-          <img src="assets/cuyutlan.svg" alt="Cuyutlán estuary and salt flats illustration">
-          <div class="card-content"><span class="tag river">Coast</span><h4>Cuyutlán: estuary, salt flats, ocean air</h4><p>Water, salt tradition, coastal scenery, and a different side of Colima away from the bigger beach resort feeling.</p><div class="meta"><span class="price-chip">Day stop</span><button class="btn secondary" data-add-plan="Cuyutlán">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-2" data-category="water nature food">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961ada?auto=format&fit=crop&w=800&q=80" alt="Cuyutlán coastal estuary" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">Coast</span><h4>Cuyutlán: estuary &amp; salt flats</h4><p>Water, salt tradition, coastal scenery, and a different side of Colima away from resort crowds.</p><div class="meta"><span class="price-chip">Day stop</span><button class="btn secondary" data-add-plan="Cuyutlán">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="water nature food">
-          <img src="assets/hiking.svg" alt="River balneario illustration">
-          <div class="card-content"><span class="tag river">River</span><h4>Los Amiales / balneario day</h4><p>Cool off in a river-style swimming spot with casual restaurants, tables, tubes, food, and a very family-friendly plan.</p><div class="meta"><span class="price-chip">Swim day</span><button class="btn secondary" data-add-plan="Los Amiales">Save to plan</button></div></div>
+        <article class="card guide-card reveal" data-category="water nature food">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1432407692369-884d9dca67da?auto=format&fit=crop&w=800&q=80" alt="River swimming spot" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">River</span><h4>Los Amiales / balneario</h4><p>Cool off in a river swimming spot with casual restaurants, tubes, food, and family-friendly vibes.</p><div class="meta"><span class="price-chip">Swim day</span><button class="btn secondary" data-add-plan="Los Amiales">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="history nature">
-          <img src="assets/colima-city.svg" alt="Archaeological ruins illustration">
-          <div class="card-content"><span class="tag clay">Pre-Hispanic</span><h4>El Chanal & La Campana</h4><p>Green archaeological areas near Colima City for walking, learning, and adding a cultural stop before lunch.</p><div class="meta"><span class="price-chip">2–4 hrs</span><button class="btn secondary" data-add-plan="El Chanal & La Campana">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-1" data-category="history nature">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=800&q=80" alt="Archaeological ruins in Mexico" loading="lazy"></div>
+          <div class="card-content"><span class="tag clay">Pre-Hispanic</span><h4>El Chanal &amp; La Campana</h4><p>Archaeological areas near Colima City for walking, learning, and a cultural stop before lunch.</p><div class="meta"><span class="price-chip">2–4 hrs</span><button class="btn secondary" data-add-plan="El Chanal & La Campana">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="food pueblo">
-          <img src="assets/food.svg" alt="Colima food illustration">
-          <div class="card-content"><span class="tag clay">Food</span><h4>Colima food crawl</h4><p>Build one meal around tatemado, pozole, seafood, highland coffee, ponche, pan dulce, and family-style snacks.</p><div class="meta"><span class="price-chip">Food night</span><button class="btn secondary" data-add-plan="Colima Food Crawl">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-2" data-category="food pueblo">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="Colima regional cuisine" loading="lazy"></div>
+          <div class="card-content"><span class="tag clay">Food</span><h4>Colima food crawl</h4><p>Tatemado, pozole, seafood, highland coffee, ponche, pan dulce, and family-style snacks.</p><div class="meta"><span class="price-chip">Food night</span><button class="btn secondary" data-add-plan="Colima Food Crawl">Save to plan</button></div></div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container card pad">
-      <div class="section-title"><div><h3>Pueblos & municipalities map</h3><p>Colima is small, but the state is officially divided into 10 municipalities. This board treats them like a starting point for exploring pueblos, beach towns, and family stops.</p></div></div>
+  <section class="section section--dark">
+    <div class="container card pad reveal" style="background:rgba(255,252,248,0.04);border-color:rgba(255,255,255,0.08)">
+      <div class="section-title" style="margin-bottom:1.5rem"><div><span class="kicker">Municipalities</span><h3>Colima state map</h3><p>Ten municipalities — pueblos, beach towns, and family stops across the state.</p></div></div>
       <div class="mini-map" aria-label="Colima municipalities">
-        <div class="map-dot">Armería<br><small>Cuyutlán / El Paraíso</small></div>
-        <div class="map-dot">Colima<br><small>Capital / Centro</small></div>
-        <div class="map-dot">Comala<br><small>Pueblo Mágico</small></div>
-        <div class="map-dot">Coquimatlán<br><small>Local town</small></div>
-        <div class="map-dot">Cuauhtémoc<br><small>Quesería / mountain vibe</small></div>
-        <div class="map-dot">Ixtlahuacán<br><small>Quiet rural stop</small></div>
-        <div class="map-dot">Manzanillo<br><small>Beaches / port</small></div>
-        <div class="map-dot">Minatitlán<br><small>Mountain route</small></div>
-        <div class="map-dot">Tecomán<br><small>Coastal/agricultural</small></div>
-        <div class="map-dot">Villa de Álvarez<br><small>La Petatera / food</small></div>
+        <div class="map-dot">Armería<small>Cuyutlán</small></div>
+        <div class="map-dot">Colima<small>Capital</small></div>
+        <div class="map-dot">Comala<small>Pueblo Mágico</small></div>
+        <div class="map-dot">Coquimatlán<small>Local town</small></div>
+        <div class="map-dot">Cuauhtémoc<small>Mountain</small></div>
+        <div class="map-dot">Ixtlahuacán<small>Rural</small></div>
+        <div class="map-dot">Manzanillo<small>Beaches</small></div>
+        <div class="map-dot">Minatitlán<small>Mountains</small></div>
+        <div class="map-dot">Tecomán<small>Coastal</small></div>
+        <div class="map-dot">Villa de Álvarez<small>Food</small></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container grid two">
-      <div class="card pad"><h3 style="font-family:Georgia,serif;margin-top:0">Simple 4-day Colima base plan</h3><p><strong>Day 1:</strong> Arrive, settle in, Colima Centro dinner. <br><strong>Day 2:</strong> Comala + Nogueras + coffee/ponche. <br><strong>Day 3:</strong> River/nature stop like Laguna La María or Suchitlán. <br><strong>Day 4:</strong> Cuyutlán or Manzanillo beach day depending on where the group stays.</p></div>
-      <div class="card pad"><h3 style="font-family:Georgia,serif;margin-top:0">What to pack for February</h3><p>Light outfits, one nicer dinner outfit, swimwear, sandals, walking shoes, sunblock, hat, portable charger, pesos/cash, copies of IDs/passports, and a shared list of emergency contacts.</p></div>
+      <div class="card pad reveal"><h3>4-day Colima base plan</h3><p style="margin-top:0.75rem"><strong>Day 1:</strong> Arrive, settle in, Centro dinner.<br><strong>Day 2:</strong> Comala + Nogueras + coffee.<br><strong>Day 3:</strong> Laguna La María or Suchitlán.<br><strong>Day 4:</strong> Cuyutlán or Manzanillo beach day.</p></div>
+      <div class="card pad reveal reveal-delay-1"><h3>February packing list</h3><p style="margin-top:0.75rem">Light outfits, one nicer dinner look, swimwear, walking shoes, sunblock, hat, portable charger, pesos/cash, ID copies, and a shared emergency contact list.</p></div>
     </div>
   </section>
 </main>
-<footer class="footer"><div class="container"><div><strong>Colima February Trip</strong><br>Explore pueblos, food, rivers, and family activities.</div><div><a href="index.html">Back to savings dashboard</a></div></div></footer>
+<footer class="footer"><div class="container"><div><strong>Colima guide</strong><br>Pueblos, food, rivers, and family activities.</div><div><a href="index.html">← Savings dashboard</a></div></div><div class="container footer-bottom">Photography via Unsplash</div></footer>
 <script src="app.js"></script>
+<script src="animations.js"></script>
 </body>
 </html>

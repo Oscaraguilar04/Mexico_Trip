@@ -3,43 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Manzanillo Guide | Colima February Trip</title>
+  <title>Manzanillo Guide | February Trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <header class="top-fund">
   <div class="container fund-inner">
-    <a class="brand" href="index.html"><span class="brand-mark"></span><span><h1 data-trip-name>Colima Family Trip</h1><small>February · 7 travelers · Mexico</small></span></a>
-    <div class="fund-status"><div class="fund-numbers"><span>Saved: <strong data-saved>$0</strong></span><span>Total cost: <strong data-cost>$0</strong></span><span>Left: <strong data-left>$0</strong></span><span><strong data-percent>0%</strong> funded</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
-    <nav class="nav"><a href="index.html">Savings</a><a href="colima.html">Colima</a><a href="manzanillo.html">Manzanillo</a></nav>
+    <a class="brand" href="index.html"><span class="brand-mark"></span><span><h1 data-trip-name>Colima Family Trip</h1><small>February · 7 travelers · México</small></span></a>
+    <div class="fund-status"><div class="fund-numbers"><span>Saved <strong data-saved>$0</strong></span><span>Goal <strong data-cost>$0</strong></span><span>Remaining <strong data-left>$0</strong></span><span><strong data-percent>0%</strong> funded</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
+    <nav class="nav"><a href="index.html">Savings</a><a href="colima.html">Colima</a><a href="manzanillo.html" aria-current="page">Manzanillo</a></nav>
   </div>
 </header>
 <main>
   <section class="page-hero">
     <div class="container page-hero-inner">
-      <span class="kicker">Beach day · seafood · sunset</span>
-      <h2>Manzanillo, Colima.</h2>
-      <p>A beach-focused guide for the group: hotel-zone beaches, the historic center, Malecón, Las Hadas / Santiago Peninsula, seafood, kayaking, surf, fishing, hiking viewpoints, and golden-hour photos.</p>
-      <div class="button-row"><a class="btn" href="#manzanillo-board">Explore beach board</a><a class="btn secondary" href="colima.html">Back to Colima pueblos</a></div>
+      <div class="page-hero-text reveal">
+        <span class="kicker">Beach · seafood · sunset</span>
+        <h2>Manzanillo,<br>Colima.</h2>
+        <p>Hotel-zone beaches, historic center, Malecón, Las Hadas peninsula, seafood, kayaking, surf, and golden-hour family photos on the Pacific.</p>
+        <div class="button-row"><a class="btn" href="#manzanillo-board">Explore board</a><a class="btn secondary" href="colima.html">← Colima pueblos</a></div>
+      </div>
+      <div class="page-hero-image reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=900&q=80" alt="Manzanillo Pacific coastline" width="900" height="600">
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:0">
     <div class="container grid two">
-      <div class="hero-card"><img src="assets/manzanillo-beach.svg" alt="Manzanillo beach illustration"><div class="caption"><strong>Main vibe:</strong> family beach day, seafood, photos, and sunset.</div></div>
-      <div class="card pad">
-        <h3 style="font-family:Georgia,serif;margin-top:0">Best base areas to research</h3>
-        <p>For a first group trip, research the central tourist/port zones, historic center and Malecón, the hotel zone, Península Santiago / Las Hadas, and Club Santiago-style areas. Keep routes simple and avoid unplanned late-night exploring.</p>
+      <div class="hero-card reveal">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Sunset over the Pacific at Manzanillo">
+        <div class="caption"><strong>The vibe:</strong> family beach day, seafood, photos, and sunset on the Bahía de Manzanillo.</div>
+      </div>
+      <div class="card pad reveal reveal-delay-1">
+        <span class="kicker">Where to stay</span>
+        <h3>Best base areas</h3>
+        <p style="margin-top:0.75rem">Research the central tourist/port zones, historic center and Malecón, hotel zone, Península Santiago / Las Hadas, and Club Santiago-style areas. Keep routes simple.</p>
         <div class="tag-row"><span class="tag river">Hotel zone</span><span class="tag">Santiago</span><span class="tag clay">Malecón</span><span class="tag river">Las Hadas</span></div>
-        <div class="alert" style="margin-top:14px"><strong>Safety note:</strong> verify current advisories and local guidance before booking transportation or lodging.</div>
+        <div class="alert" style="margin-top:1.25rem"><strong>Safety note:</strong> verify current advisories and local guidance before booking transport or lodging.</div>
       </div>
     </div>
   </section>
 
   <section id="manzanillo-board" class="section">
     <div class="container">
-      <div class="section-title"><div><h3>Manzanillo activity board</h3><p>Beach cards, tour-style ideas, and family-friendly activities inspired by Pinterest, Airbnb experiences, and Expedia planning pages.</p></div><div id="savedPlaces" class="tag-row"></div></div>
-      <div class="filterbar">
+      <div class="section-title reveal">
+        <div><span class="kicker">Beach board</span><h3>Manzanillo pins</h3><p>Beach cards, water activities, and family-friendly plans for the Pacific coast.</p></div>
+        <div id="savedPlaces" class="tag-row"></div>
+      </div>
+      <div class="filterbar reveal">
         <button class="filter active" data-filter="all">All</button>
         <button class="filter" data-filter="beach">Beaches</button>
         <button class="filter" data-filter="water">Water sports</button>
@@ -48,55 +63,56 @@
         <button class="filter" data-filter="photos">Photos</button>
       </div>
       <div class="grid three">
-        <article class="card guide-card" data-category="beach photos water">
-          <img src="assets/manzanillo-beach.svg" alt="Playa La Audiencia illustration">
-          <div class="card-content"><span class="tag river">Beach</span><h4>Playa La Audiencia</h4><p>Calmer bay-style beach energy, good for family time, swimming, lounging, and simple seafood plans.</p><div class="meta"><span class="price-chip">Beach day</span><button class="btn secondary" data-add-plan="Playa La Audiencia">Save to plan</button></div></div>
+        <article class="card guide-card reveal" data-category="beach photos water">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80" alt="Playa La Audiencia calm bay" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">Beach</span><h4>Playa La Audiencia</h4><p>Calmer bay-style beach for family time, swimming, lounging, and simple seafood.</p><div class="meta"><span class="price-chip">Beach day</span><button class="btn secondary" data-add-plan="Playa La Audiencia">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="beach photos food">
-          <img src="assets/sunset.svg" alt="Miramar beach sunset illustration">
-          <div class="card-content"><span class="tag river">Sunset</span><h4>Playa Miramar / Club Santiago</h4><p>Wide beach feeling, good for walking, sunset photos, snacks, and a relaxed family afternoon.</p><div class="meta"><span class="price-chip">Afternoon</span><button class="btn secondary" data-add-plan="Playa Miramar">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-1" data-category="beach photos food">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Miramar beach at sunset" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">Sunset</span><h4>Playa Miramar / Club Santiago</h4><p>Wide beach for walking, sunset photos, snacks, and a relaxed family afternoon.</p><div class="meta"><span class="price-chip">Afternoon</span><button class="btn secondary" data-add-plan="Playa Miramar">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="beach food water">
-          <img src="assets/manzanillo-beach.svg" alt="La Boquita beach illustration">
-          <div class="card-content"><span class="tag clay">Seafood</span><h4>La Boquita</h4><p>A beach stop to research for palapas, casual seafood, family table time, and easy ocean photos.</p><div class="meta"><span class="price-chip">Lunch</span><button class="btn secondary" data-add-plan="La Boquita">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-2" data-category="beach food water">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Seafood by the beach" loading="lazy"></div>
+          <div class="card-content"><span class="tag clay">Seafood</span><h4>La Boquita</h4><p>Beach stop for palapas, casual seafood, family table time, and ocean photos.</p><div class="meta"><span class="price-chip">Lunch</span><button class="btn secondary" data-add-plan="La Boquita">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="water beach photos">
-          <img src="assets/fishing.svg" alt="Sport fishing boat illustration">
-          <div class="card-content"><span class="tag river">Fishing</span><h4>Sailfish / sport fishing idea</h4><p>Manzanillo is known for fishing culture. Research licensed charters if the group wants one bigger paid activity.</p><div class="meta"><span class="price-chip">Paid tour</span><button class="btn secondary" data-add-plan="Sport fishing Manzanillo">Save to plan</button></div></div>
+        <article class="card guide-card reveal" data-category="water beach photos">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Sport fishing on the Pacific" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">Fishing</span><h4>Sport fishing charter</h4><p>Manzanillo is known for fishing culture. Research licensed charters for a group activity.</p><div class="meta"><span class="price-chip">Paid tour</span><button class="btn secondary" data-add-plan="Sport fishing Manzanillo">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="water beach nature">
-          <img src="assets/fishing.svg" alt="Kayak and paddleboard illustration">
-          <div class="card-content"><span class="tag river">SUP / Kayak</span><h4>Kayak, surf, or paddleboard</h4><p>Build a morning around a water lesson or rental, then recover with seafood and shade.</p><div class="meta"><span class="price-chip">Morning</span><button class="btn secondary" data-add-plan="Kayak / SUP Manzanillo">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-1" data-category="water beach nature">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80" alt="Kayaking on calm water" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">SUP / Kayak</span><h4>Kayak or paddleboard</h4><p>Build a morning around a water lesson or rental, then recover with seafood and shade.</p><div class="meta"><span class="price-chip">Morning</span><button class="btn secondary" data-add-plan="Kayak / SUP Manzanillo">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="nature photos">
-          <img src="assets/hiking.svg" alt="Cerro de la Cruz viewpoint illustration">
-          <div class="card-content"><span class="tag">Viewpoint</span><h4>Cerro de la Cruz</h4><p>A downtown-area hike idea for views over Manzanillo, the port, the lagoon, and the coast.</p><div class="meta"><span class="price-chip">Easy hike</span><button class="btn secondary" data-add-plan="Cerro de la Cruz">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-2" data-category="nature photos">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=800&q=80" alt="Coastal hiking viewpoint" loading="lazy"></div>
+          <div class="card-content"><span class="tag">Viewpoint</span><h4>Cerro de la Cruz</h4><p>Downtown hike for views over Manzanillo, the port, lagoon, and coast.</p><div class="meta"><span class="price-chip">Easy hike</span><button class="btn secondary" data-add-plan="Cerro de la Cruz">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="nature photos">
-          <img src="assets/hiking.svg" alt="Cerro del Toro hiking illustration">
-          <div class="card-content"><span class="tag">Hike</span><h4>Cerro del Toro</h4><p>A nature stop near Manzanillo for hiking, biking, quad-style activities, and birdwatching research.</p><div class="meta"><span class="price-chip">Moderate</span><button class="btn secondary" data-add-plan="Cerro del Toro">Save to plan</button></div></div>
+        <article class="card guide-card reveal" data-category="nature photos">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff280c?auto=format&fit=crop&w=800&q=80" alt="Cerro del Toro nature trails" loading="lazy"></div>
+          <div class="card-content"><span class="tag">Hike</span><h4>Cerro del Toro</h4><p>Nature stop for hiking, biking, and birdwatching research near Manzanillo.</p><div class="meta"><span class="price-chip">Moderate</span><button class="btn secondary" data-add-plan="Cerro del Toro">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="photos food">
-          <img src="assets/colima-city.svg" alt="Historic center of Manzanillo illustration">
-          <div class="card-content"><span class="tag clay">Centro</span><h4>Centro Histórico & Malecón</h4><p>Walk the garden, look for the Sebastián sculpture, get photos, snacks, and a low-key evening plan.</p><div class="meta"><span class="price-chip">Evening</span><button class="btn secondary" data-add-plan="Centro Histórico de Manzanillo">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-1" data-category="photos food">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1555881400-74d787ccc064?auto=format&fit=crop&w=800&q=80" alt="Historic Malecón of Manzanillo" loading="lazy"></div>
+          <div class="card-content"><span class="tag clay">Centro</span><h4>Centro Histórico &amp; Malecón</h4><p>Walk the garden, find the Sebastián sculpture, snacks, and a low-key evening plan.</p><div class="meta"><span class="price-chip">Evening</span><button class="btn secondary" data-add-plan="Centro Histórico de Manzanillo">Save to plan</button></div></div>
         </article>
-        <article class="card guide-card" data-category="beach photos food">
-          <img src="assets/sunset.svg" alt="Las Hadas sunset illustration">
-          <div class="card-content"><span class="tag river">Resort view</span><h4>Las Hadas / Península Santiago</h4><p>White resort-style architecture, bay views, photo stops, and a prettier dinner research area.</p><div class="meta"><span class="price-chip">Photo stop</span><button class="btn secondary" data-add-plan="Las Hadas / Santiago">Save to plan</button></div></div>
+        <article class="card guide-card reveal reveal-delay-2" data-category="beach photos food">
+          <div class="img-wrap"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" alt="Las Hadas resort peninsula" loading="lazy"></div>
+          <div class="card-content"><span class="tag river">Resort view</span><h4>Las Hadas / Península Santiago</h4><p>White architecture, bay views, photo stops, and a prettier dinner research area.</p><div class="meta"><span class="price-chip">Photo stop</span><button class="btn secondary" data-add-plan="Las Hadas / Santiago">Save to plan</button></div></div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--dark">
     <div class="container grid three">
-      <div class="card pad"><h3 style="font-family:Georgia,serif;margin-top:0">Beach-day flow</h3><p><strong>Morning:</strong> leave early, breakfast, beach chairs/palapa. <br><strong>Midday:</strong> swim, water activity, seafood. <br><strong>Evening:</strong> Malecón, sunset, dinner, back before it gets too late.</p></div>
-      <div class="card pad"><h3 style="font-family:Georgia,serif;margin-top:0">Group essentials</h3><p>Bring cash pesos, towels, waterproof phone pouch, sunglasses, sunscreen, IDs, portable charger, and a planned ride back before everyone gets tired.</p></div>
-      <div class="card pad"><h3 style="font-family:Georgia,serif;margin-top:0">Photo ideas</h3><p>White outfits by the beach, papel-picado color accents, sunset family photo, palm-tree walking shot, seafood table shot, and a “Colima 2027” group pose.</p></div>
+      <div class="card pad reveal" style="background:rgba(255,252,248,0.04);border-color:rgba(255,255,255,0.08)"><h3>Beach-day flow</h3><p style="margin-top:0.75rem"><strong>Morning:</strong> early start, breakfast, palapa.<br><strong>Midday:</strong> swim, water activity, seafood.<br><strong>Evening:</strong> Malecón, sunset, dinner.</p></div>
+      <div class="card pad reveal reveal-delay-1" style="background:rgba(255,252,248,0.04);border-color:rgba(255,255,255,0.08)"><h3>Group essentials</h3><p style="margin-top:0.75rem">Cash pesos, towels, waterproof phone pouch, sunglasses, sunscreen, IDs, portable charger, and a planned ride back.</p></div>
+      <div class="card pad reveal reveal-delay-2" style="background:rgba(255,252,248,0.04);border-color:rgba(255,255,255,0.08)"><h3>Photo ideas</h3><p style="margin-top:0.75rem">White outfits on the beach, sunset family photo, palm-tree walking shot, seafood table, and a group "Colima 2027" pose.</p></div>
     </div>
   </section>
 </main>
-<footer class="footer"><div class="container"><div><strong>Manzanillo guide</strong><br>Beach, water, seafood, photos, and family planning.</div><div><a href="index.html">Back to trip savings</a></div></div></footer>
+<footer class="footer"><div class="container"><div><strong>Manzanillo guide</strong><br>Beach, water, seafood, and family planning.</div><div><a href="index.html">← Trip savings</a></div></div><div class="container footer-bottom">Photography via Unsplash</div></footer>
 <script src="app.js"></script>
+<script src="animations.js"></script>
 </body>
 </html>
