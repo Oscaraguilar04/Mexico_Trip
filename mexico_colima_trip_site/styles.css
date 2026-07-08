@@ -119,10 +119,12 @@ button, input, select, textarea { font: inherit; }
   display: block;
   font-size: 0.6875rem;
   font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 252, 248, 0.45);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(255, 252, 248, 0.55);
   margin-top: 0.125rem;
+  line-height: 1.45;
+  max-width: 22rem;
 }
 
 .fund-status { min-width: 0; }
@@ -307,10 +309,13 @@ button, input, select, textarea { font: inherit; }
 }
 
 .hero-stat span {
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
   color: var(--muted);
+  line-height: 1.35;
+  max-width: 11rem;
+  display: block;
 }
 
 /* ── Marquee ──────────────────────────────────────────────────────────── */

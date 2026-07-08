@@ -1,21 +1,28 @@
-const STORAGE_KEY = 'colimaTripGuide.v1';
+const STORAGE_KEY = 'colimaTripGuide.v2';
+const LEGACY_STORAGE_KEY = 'colimaTripGuide.v1';
+const TRAVELER_COUNT = 7;
+const TRAVELER_NAMES = ['Oscar', 'Leah', 'Raul', 'Rosa', 'Lily', 'Mike', 'Yolee'];
+const MEMBER_COLORS = ['sun', 'clay', 'river', 'leaf', 'sun', 'clay', 'river'];
+
+function buildMembers(existingMembers){
+  return TRAVELER_NAMES.map((name, i) => {
+    const existing = existingMembers && existingMembers[i];
+    return {
+      id: existing?.id || cryptoId(),
+      name,
+      color: existing?.color || MEMBER_COLORS[i]
+    };
+  });
+}
 
 const defaultData = {
   tripName: 'Colima Family Trip',
   month: 'February',
-  travelers: 7,
-  members: [
-    { id: cryptoId(), name: 'Oscar', color: 'sun' },
-    { id: cryptoId(), name: 'Leah', color: 'clay' },
-    { id: cryptoId(), name: 'Raul', color: 'river' },
-    { id: cryptoId(), name: 'Rosa', color: 'leaf' },
-    { id: cryptoId(), name: 'Lily', color: 'sun' },
-    { id: cryptoId(), name: 'Mike', color: 'clay' },
-    { id: cryptoId(), name: 'Yolee', color: 'river' }
-  ],
+  travelers: TRAVELER_COUNT,
+  members: buildMembers(),
   budget: [
-    { id: cryptoId(), label: 'Round-trip flights LAX ⇄ Colima / Manzanillo (7 travelers)', amount: 4200 },
-    { id: cryptoId(), label: 'Lodging / Airbnb for 7', amount: 1750 },
+    { id: cryptoId(), label: 'Round-trip flights LAX ⇄ Colima / Manzanillo (Oscar, Leah, Raul, Rosa, Lily, Mike, Yolee)', amount: 4200 },
+    { id: cryptoId(), label: 'Lodging / Airbnb for 7 (Oscar · Leah · Raul · Rosa · Lily · Mike · Yolee)', amount: 1750 },
     { id: cryptoId(), label: 'Food, snacks, coffee, family meals (7 people)', amount: 1400 },
     { id: cryptoId(), label: 'Transportation in Mexico', amount: 700 },
     { id: cryptoId(), label: 'Activities, beaches, tours, entries', amount: 700 },
@@ -30,43 +37,41 @@ function cryptoId(){
 function money(num){
   return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(Number(num)||0);
 }
+function travelerRoster(separator){
+  return TRAVELER_NAMES.join(separator || ' · ');
+}
 function loadData(){
   try{
     const hashData = new URLSearchParams(location.hash.replace(/^#/, '')).get('trip');
     if(hashData){
       const decoded = JSON.parse(decodeURIComponent(atob(hashData)));
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(decoded));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sanitize(decoded)));
       history.replaceState(null, '', location.pathname);
       return sanitize(decoded);
     }
   } catch(err){ console.warn('Could not import trip data', err); }
   const saved = localStorage.getItem(STORAGE_KEY);
   if(!saved){
+    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+    if(legacy){
+      try {
+        const migrated = sanitize(JSON.parse(legacy));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+        localStorage.removeItem(LEGACY_STORAGE_KEY);
+        return migrated;
+      } catch(err){ /* fall through to fresh defaults */ }
+    }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
     return structuredClone(defaultData);
   }
   try { return sanitize(JSON.parse(saved)); }
   catch(err){ return structuredClone(defaultData); }
 }
-const TRAVELER_COUNT = 7;
-const TRAVELER_NAMES = ['Oscar', 'Leah', 'Raul', 'Rosa', 'Lily', 'Mike', 'Yolee'];
 
 function sanitize(data){
   const merged = {...structuredClone(defaultData), ...data};
   merged.travelers = TRAVELER_COUNT;
-  if(!Array.isArray(merged.members) || merged.members.length === 0){
-    merged.members = structuredClone(defaultData.members);
-  }
-  while(merged.members.length < TRAVELER_COUNT){
-    merged.members.push({
-      id: cryptoId(),
-      name: 'Traveler ' + (merged.members.length + 1),
-      color: 'river'
-    });
-  }
-  if(merged.members.length > TRAVELER_COUNT){
-    merged.members = merged.members.slice(0, TRAVELER_COUNT);
-  }
+  merged.members = buildMembers(merged.members);
   if(!Array.isArray(merged.budget)) merged.budget = structuredClone(defaultData.budget);
   if(!Array.isArray(merged.contributions)) merged.contributions = [];
   return merged;
@@ -76,6 +81,12 @@ function totalCost(){ return state.budget.reduce((sum,item)=>sum+(Number(item.am
 function totalSaved(){ return state.contributions.reduce((sum,item)=>sum+(Number(item.amount)||0),0); }
 function savedForMember(id){ return state.contributions.filter(x=>x.memberId===id).reduce((s,x)=>s+(Number(x.amount)||0),0); }
 function initials(name){ return (name || '?').split(/\s+/).map(p=>p[0]).join('').slice(0,2).toUpperCase(); }
+function memberNameById(id){
+  const member = state.members.find(m => m.id === id);
+  if(member) return member.name;
+  const index = state.members.findIndex(m => m.id === id);
+  return TRAVELER_NAMES[index] || 'Group member';
+}
 
 let state = loadData();
 
@@ -83,6 +94,7 @@ function renderTopFund(){
   const saved = totalSaved();
   const cost = totalCost();
   const percent = cost > 0 ? Math.min(100, Math.round((saved / cost) * 100)) : 0;
+  const roster = travelerRoster(' · ');
   document.querySelectorAll('[data-trip-name]').forEach(el=>el.textContent = state.tripName);
   document.querySelectorAll('[data-saved]').forEach(el=>el.textContent = money(saved));
   document.querySelectorAll('[data-cost]').forEach(el=>el.textContent = money(cost));
@@ -90,6 +102,8 @@ function renderTopFund(){
   document.querySelectorAll('[data-percent]').forEach(el=>el.textContent = percent + '%');
   document.querySelectorAll('.progress-fill').forEach(el=>el.style.width = percent + '%');
   document.querySelectorAll('[data-traveler-count]').forEach(el=>el.textContent = TRAVELER_COUNT);
+  document.querySelectorAll('[data-traveler-roster]').forEach(el=>el.textContent = roster);
+  document.querySelectorAll('[data-traveler-roster-comma]').forEach(el=>el.textContent = travelerRoster(', '));
 }
 
 function renderDashboard(){
@@ -105,13 +119,18 @@ function renderDashboard(){
   if(memberNameEditor){
     memberNameEditor.innerHTML = state.members.map(m=>`
       <div class="form-row">
-        <label>Traveler name<input data-rename="${m.id}" value="${escapeAttr(m.name)}" /></label>
-        <label>Saved so far<input readonly value="${money(savedForMember(m.id))}" /></label>
+        <label>${escapeHtml(m.name)}<input data-rename="${m.id}" value="${escapeAttr(m.name)}" aria-label="${escapeAttr(m.name)} saved amount editor" /></label>
+        <label>Saved so far<input readonly value="${money(savedForMember(m.id))}" aria-label="${escapeAttr(m.name)} total saved" /></label>
       </div>`).join('');
     memberNameEditor.querySelectorAll('[data-rename]').forEach(input=>{
       input.addEventListener('change', e=>{
         const member = state.members.find(m=>m.id===e.target.dataset.rename);
-        if(member){ member.name = e.target.value.trim() || member.name; saveData(); renderAll(); }
+        const index = state.members.findIndex(m=>m.id===e.target.dataset.rename);
+        if(member){
+          member.name = e.target.value.trim() || TRAVELER_NAMES[index] || member.name;
+          saveData();
+          renderAll();
+        }
       });
     });
   }
@@ -133,8 +152,8 @@ function renderDashboard(){
   if(feed){
     const sorted = [...state.contributions].sort((a,b)=>b.createdAt-a.createdAt);
     feed.innerHTML = sorted.length ? sorted.map(item=>{
-      const member = state.members.find(m=>m.id===item.memberId);
-      return `<div class="feed-item"><strong>${escapeHtml(member?.name || 'Traveler')} added ${money(item.amount)}</strong><small>${escapeHtml(item.note || 'Trip savings')} · ${new Date(item.createdAt).toLocaleString()}</small></div>`
+      const name = memberNameById(item.memberId);
+      return `<div class="feed-item"><strong>${escapeHtml(name)} added ${money(item.amount)}</strong><small>${escapeHtml(item.note || 'Trip savings')} · ${new Date(item.createdAt).toLocaleString()}</small></div>`
     }).join('') : '<p class="helper">No deposits logged yet. Add the first contribution to start the group fund.</p>';
   }
   const saved = totalSaved();
@@ -181,7 +200,12 @@ function setupDashboardForms(){
   const resetDemo = document.querySelector('#resetDemo');
   if(resetDemo){
     resetDemo.addEventListener('click', ()=>{
-      if(confirm('Reset this website back to the starter trip plan?')){ localStorage.removeItem(STORAGE_KEY); state = loadData(); renderAll(); }
+      if(confirm('Reset this website back to the starter trip plan?')){
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(LEGACY_STORAGE_KEY);
+        state = loadData();
+        renderAll();
+      }
     });
   }
   const exportBtn = document.querySelector('#exportTrip');
@@ -189,7 +213,7 @@ function setupDashboardForms(){
     exportBtn.addEventListener('click', async ()=>{
       const encoded = btoa(encodeURIComponent(JSON.stringify(state)));
       const link = `${location.href.split('#')[0]}#trip=${encoded}`;
-      try{ await navigator.clipboard.writeText(link); alert('Trip snapshot link copied. Send it to the group so they can open the same saved numbers.'); }
+      try{ await navigator.clipboard.writeText(link); alert('Trip snapshot link copied. Send it to Oscar, Leah, Raul, Rosa, Lily, Mike, and Yolee so everyone opens the same saved numbers.'); }
       catch(err){ prompt('Copy this trip snapshot link:', link); }
     });
   }
