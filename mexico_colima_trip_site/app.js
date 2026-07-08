@@ -7,11 +7,11 @@ const defaultData = {
   members: [
     { id: cryptoId(), name: 'Oscar', color: 'sun' },
     { id: cryptoId(), name: 'Leah', color: 'clay' },
-    { id: cryptoId(), name: 'Traveler 3', color: 'river' },
-    { id: cryptoId(), name: 'Traveler 4', color: 'leaf' },
-    { id: cryptoId(), name: 'Traveler 5', color: 'sun' },
-    { id: cryptoId(), name: 'Traveler 6', color: 'clay' },
-    { id: cryptoId(), name: 'Traveler 7', color: 'river' }
+    { id: cryptoId(), name: 'Raul', color: 'river' },
+    { id: cryptoId(), name: 'Rosa', color: 'leaf' },
+    { id: cryptoId(), name: 'Lily', color: 'sun' },
+    { id: cryptoId(), name: 'Mike', color: 'clay' },
+    { id: cryptoId(), name: 'Yolee', color: 'river' }
   ],
   budget: [
     { id: cryptoId(), label: 'Round-trip flights LAX ⇄ Colima / Manzanillo (7 travelers)', amount: 4200 },
@@ -49,6 +49,7 @@ function loadData(){
   catch(err){ return structuredClone(defaultData); }
 }
 const TRAVELER_COUNT = 7;
+const TRAVELER_NAMES = ['Oscar', 'Leah', 'Raul', 'Rosa', 'Lily', 'Mike', 'Yolee'];
 
 function sanitize(data){
   const merged = {...structuredClone(defaultData), ...data};
