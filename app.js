@@ -1,8 +1,11 @@
 const STORAGE_KEY = 'colimaTripGuide.v3';
 const LEGACY_STORAGE_KEYS = ['colimaTripGuide.v2', 'colimaTripGuide.v1'];
+const MY_MEMBER_KEY = 'colimaTripGuide.myMember';
 const TRAVELER_COUNT = 7;
 const TRAVELER_NAMES = ['Oscar', 'Leah', 'Raul', 'Rosa', 'Lily', 'Mike', 'Yolee'];
 const MEMBER_COLORS = ['sun', 'clay', 'river', 'leaf', 'sun', 'clay', 'river'];
+
+let syncActive = false;
 
 function buildMembers(existingMembers){
   return TRAVELER_NAMES.map((name, i) => {
@@ -78,7 +81,14 @@ function sanitize(data){
   if(!Array.isArray(merged.contributions)) merged.contributions = [];
   return merged;
 }
-function saveData(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+function saveData(options = {}){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  if(syncActive && !options.skipSync && window.TripSync && !window.TripSync.isApplyingRemote()){
+    window.TripSync.pushState(state);
+  }
+}
+
 function totalCost(){ return state.budget.reduce((sum,item)=>sum+(Number(item.amount)||0),0); }
 function totalSaved(){ return state.contributions.reduce((sum,item)=>sum+(Number(item.amount)||0),0); }
 function savedForMember(id){ return state.contributions.filter(x=>x.memberId===id).reduce((s,x)=>s+(Number(x.amount)||0),0); }
@@ -88,6 +98,44 @@ function memberNameById(id){
   if(member) return member.name;
   const index = state.members.findIndex(m => m.id === id);
   return TRAVELER_NAMES[index] || 'Group member';
+}
+
+function relativeTime(timestamp){
+  const diff = Date.now() - Number(timestamp);
+  const mins = Math.floor(diff / 60000);
+  if(mins < 1) return 'just now';
+  if(mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if(hours < 48) return `${hours}h ago`;
+  return new Date(timestamp).toLocaleDateString();
+}
+
+function rememberMyMember(memberId){
+  if(memberId) localStorage.setItem(MY_MEMBER_KEY, memberId);
+}
+
+function restoreMyMember(){
+  const savedId = localStorage.getItem(MY_MEMBER_KEY);
+  const select = document.querySelector('#memberSelect');
+  if(!select || !savedId) return;
+  if(state.members.some(m => m.id === savedId)) select.value = savedId;
+}
+
+function renderSyncStatus(status, detail){
+  const banner = document.querySelector('#syncStatus');
+  if(!banner) return;
+  banner.classList.remove('sync-status--live', 'sync-status--offline', 'sync-status--error', 'sync-status--connecting');
+  banner.classList.add(`sync-status--${status}`);
+  const label = banner.querySelector('[data-sync-label]');
+  const text = banner.querySelector('[data-sync-detail]');
+  const labels = {
+    live: 'Live group board',
+    offline: 'This device only',
+    error: 'Sync issue',
+    connecting: 'Connecting…'
+  };
+  if(label) label.textContent = labels[status] || 'Group board';
+  if(text) text.textContent = detail || '';
 }
 
 let state = loadData();
@@ -117,6 +165,7 @@ function renderDashboard(){
 
   if(memberSelect){
     memberSelect.innerHTML = state.members.map(m=>`<option value="${m.id}">${escapeHtml(m.name)}</option>`).join('');
+    restoreMyMember();
   }
   if(memberNameEditor){
     memberNameEditor.innerHTML = state.members.map(m=>`
@@ -155,8 +204,8 @@ function renderDashboard(){
     const sorted = [...state.contributions].sort((a,b)=>b.createdAt-a.createdAt);
     feed.innerHTML = sorted.length ? sorted.map(item=>{
       const name = memberNameById(item.memberId);
-      return `<div class="feed-item"><strong>${escapeHtml(name)} added ${money(item.amount)}</strong><small>${escapeHtml(item.note || 'Trip savings')} · ${new Date(item.createdAt).toLocaleString()}</small></div>`
-    }).join('') : '<p class="helper">No deposits logged yet. Add the first contribution to start the group fund.</p>';
+      return `<article class="feed-item reveal"><div class="feed-item-head"><strong>${escapeHtml(name)}</strong><span class="feed-amount">${money(item.amount)}</span></div><p>${escapeHtml(item.note || 'Trip savings')}</p><small>${relativeTime(item.createdAt)} · ${new Date(item.createdAt).toLocaleString()}</small></article>`;
+    }).join('') : `<p class="helper">No deposits yet. When someone adds money, everyone on the group board will see it here.</p>`;
   }
   const saved = totalSaved();
   const cost = totalCost();
@@ -168,17 +217,36 @@ function renderDashboard(){
 }
 
 function setupDashboardForms(){
+  const memberSelect = document.querySelector('#memberSelect');
+  if(memberSelect){
+    memberSelect.addEventListener('change', () => rememberMyMember(memberSelect.value));
+  }
   const contributionForm = document.querySelector('#contributionForm');
   if(contributionForm){
-    contributionForm.addEventListener('submit', e=>{
+    contributionForm.addEventListener('submit', async e=>{
       e.preventDefault();
       const amount = Number(document.querySelector('#amountInput').value);
       const memberId = document.querySelector('#memberSelect').value;
       const note = document.querySelector('#noteInput').value.trim();
       if(!amount || amount <= 0){ alert('Enter a contribution amount greater than $0.'); return; }
-      state.contributions.push({id:cryptoId(), memberId, amount, note, createdAt:Date.now()});
+      rememberMyMember(memberId);
+      const contribution = {id:cryptoId(), memberId, amount, note, createdAt:Date.now()};
+
+      if(syncActive && window.TripSync){
+        try {
+          await window.TripSync.addContribution(contribution);
+          contributionForm.reset();
+          restoreMyMember();
+          return;
+        } catch(err){
+          console.warn('Could not sync contribution, saving locally', err);
+        }
+      }
+
+      state.contributions.push(contribution);
       saveData();
       contributionForm.reset();
+      restoreMyMember();
       renderAll();
     });
   }
@@ -204,9 +272,11 @@ function setupDashboardForms(){
     resetDemo.addEventListener('click', ()=>{
       if(confirm('Reset this website back to the starter trip plan?')){
         localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(MY_MEMBER_KEY);
         LEGACY_STORAGE_KEYS.forEach(key => localStorage.removeItem(key));
         state = loadData();
         renderAll();
+        if(syncActive && window.TripSync) window.TripSync.pushState(state);
       }
     });
   }
@@ -215,8 +285,8 @@ function setupDashboardForms(){
     exportBtn.addEventListener('click', async ()=>{
       const encoded = btoa(encodeURIComponent(JSON.stringify(state)));
       const link = `${location.href.split('#')[0]}#trip=${encoded}`;
-      try{ await navigator.clipboard.writeText(link); alert('Trip snapshot link copied. Send it to Oscar, Leah, Raul, Rosa, Lily, Mike, and Yolee so everyone opens the same saved numbers.'); }
-      catch(err){ prompt('Copy this trip snapshot link:', link); }
+      try{ await navigator.clipboard.writeText(link); alert('Backup link copied. With live sync enabled, you usually do not need this — everyone sees the same board automatically.'); }
+      catch(err){ prompt('Copy this backup link:', link); }
     });
   }
   document.querySelectorAll('[data-add-plan]').forEach(btn=>{
@@ -256,13 +326,27 @@ function setupFilters(){
   });
 }
 
+async function initGroupSync(){
+  if(!window.TripSync) return;
+  syncActive = await window.TripSync.init({
+    getDefaultState: () => structuredClone(defaultData),
+    setState: (data) => {
+      state = sanitize(data);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      renderAll();
+    },
+    onStatusChange: renderSyncStatus
+  });
+}
+
 function setText(selector, value){ const el = document.querySelector(selector); if(el) el.textContent = value; }
 function escapeHtml(str=''){ return String(str).replace(/[&<>"']/g, s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[s])); }
 function escapeAttr(str=''){ return escapeHtml(str).replace(/`/g,'&#096;'); }
 function renderAll(){ renderTopFund(); renderDashboard(); renderSavedPlaces(); }
 
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', async ()=>{
   renderAll();
   setupDashboardForms();
   setupFilters();
+  await initGroupSync();
 });

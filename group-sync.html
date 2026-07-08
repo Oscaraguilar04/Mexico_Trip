@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enable group sync | Colima Trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-fund">
+    <div class="container fund-inner">
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span><h1>Colima Family Trip</h1><small>Group sync setup</small></span></a>
+      <nav class="nav"><a href="index.html">← Back to savings board</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container card pad" style="max-width:720px">
+        <span class="kicker">One-time setup · ~10 minutes</span>
+        <h2 style="margin-top:0.5rem">Make the savings board shared for everyone</h2>
+        <p>Right now each phone saves its own numbers. With <strong>group sync</strong> turned on, when Oscar logs $200 on his phone, Leah, Raul, Rosa, Lily, Mike, and Yolee see it on theirs too — instantly.</p>
+
+        <h3>Step 1 — Create a free Firebase project</h3>
+        <ol>
+          <li>Go to <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a> and sign in with Google.</li>
+          <li>Click <strong>Add project</strong> → name it <code>colima-trip</code> → continue → create.</li>
+          <li>Open the project → click the web icon <strong>&lt;/&gt;</strong> → register app name <code>colima-trip-site</code>.</li>
+          <li>Copy the <code>firebaseConfig</code> object Firebase shows you.</li>
+        </ol>
+
+        <h3>Step 2 — Enable Firestore</h3>
+        <ol>
+          <li>In Firebase, open <strong>Build → Firestore Database</strong>.</li>
+          <li>Click <strong>Create database</strong> → start in <strong>production mode</strong>.</li>
+          <li>Pick a region close to you (e.g. <code>us-west</code>) → enable.</li>
+          <li>Open the <strong>Rules</strong> tab and paste:</li>
+        </ol>
+        <pre style="background:var(--cream);padding:1rem;overflow:auto;border:1px solid var(--line);border-radius:var(--radius-lg)">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /trips/{tripId} {
+      allow read, write: if true;
+    }
+  }
+}</pre>
+        <p class="helper">This is a family planning board on a private link — not a bank. Do not store account numbers here.</p>
+
+        <h3>Step 3 — Paste keys into the site</h3>
+        <ol>
+          <li>In this repo, open <code>firebase-config.js</code>.</li>
+          <li>Set <code>enabled: true</code>.</li>
+          <li>Paste your Firebase keys into the <code>firebase</code> section.</li>
+          <li>Commit and push to <code>main</code> — GitHub Pages redeploys in ~30 seconds.</li>
+        </ol>
+
+        <h3>Step 4 — Tell the group</h3>
+        <p>Everyone opens the same link: <a href="index.html">the trip site</a>. Pick your name once — the site remembers it on your phone. Post contributions and everyone sees the live feed.</p>
+
+        <div class="alert" style="margin-top:2rem">
+          <strong>Need help?</strong> The status banner on the savings page turns green when sync is working. If it says “Sync issue,” double-check your Firebase keys and Firestore rules.
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

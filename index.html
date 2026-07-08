@@ -100,11 +100,18 @@
           <div>
             <span class="kicker">Group fund</span>
             <h3>Trip savings dashboard</h3>
-            <p>Track the group goal and log contributions from Oscar, Leah, Raul, Rosa, Lily, Mike, and Yolee.</p>
+            <p>Log contributions as Oscar, Leah, Raul, Rosa, Lily, Mike, or Yolee — everyone sees the same live board when group sync is on.</p>
           </div>
         </div>
         <div class="dashboard">
           <div class="card pad reveal">
+            <div class="sync-status sync-status--offline" id="syncStatus" role="status" aria-live="polite">
+              <span class="sync-dot" aria-hidden="true"></span>
+              <div>
+                <strong data-sync-label>This device only</strong>
+                <p class="helper" data-sync-detail style="margin:0.25rem 0 0">Turn on group sync so everyone sees the same contributions. <a href="group-sync.html">How to enable</a></p>
+              </div>
+            </div>
             <div class="stat-grid">
               <div class="stat"><span>Total cost</span><strong id="statTotal">$0</strong></div>
               <div class="stat"><span>Saved</span><strong id="statSaved">$0</strong></div>
@@ -115,7 +122,7 @@
             <form id="contributionForm">
               <div class="form-row three">
                 <label>Who is contributing?
-                  <select id="memberSelect"></select>
+                  <select id="memberSelect" aria-describedby="memberHelp"></select>
                 </label>
                 <label>Amount
                   <input id="amountInput" type="number" min="1" step="1" placeholder="100" inputmode="numeric" />
@@ -124,7 +131,8 @@
                   <input id="noteInput" placeholder="Zelle, Venmo, cash" />
                 </label>
               </div>
-              <button class="btn clay" type="submit">Add contribution</button>
+              <button class="btn clay" type="submit">Post contribution for the group</button>
+              <p class="helper" id="memberHelp">Pick your name — the site remembers it on this phone. With live sync, everyone sees new deposits instantly.</p>
               <p class="helper">Planning board only — no real payments processed here.</p>
             </form>
           </div>
@@ -134,10 +142,20 @@
             <div class="stat" style="margin:1rem 0"><span>Each person's fair share</span><strong id="statEach">$0</strong></div>
             <div id="memberList" class="member-list"></div>
             <div class="button-row">
-              <button id="exportTrip" class="btn river" type="button">Copy snapshot link</button>
+              <button id="exportTrip" class="btn secondary" type="button">Copy backup link</button>
               <button id="resetDemo" class="btn secondary" type="button">Reset</button>
             </div>
           </aside>
+        </div>
+        <div class="card pad reveal" style="margin-top:1.5rem">
+          <div class="section-title" style="margin-bottom:1rem">
+            <div>
+              <span class="kicker">Group chat board</span>
+              <h3>Recent contributions</h3>
+              <p class="helper" style="margin-top:0.35rem">A running log of who put in what — like a group text for the trip fund.</p>
+            </div>
+          </div>
+          <div id="contributionFeed" class="contribution-feed"></div>
         </div>
       </div>
     </section>
@@ -239,7 +257,11 @@
     <div class="container footer-bottom">Photography via Unsplash · Built for phone &amp; desktop</div>
   </footer>
 
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="photos.js"></script>
+  <script src="sync.js"></script>
   <script src="app.js"></script>
   <script src="animations.js"></script>
   <script>

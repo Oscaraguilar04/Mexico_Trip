@@ -862,6 +862,98 @@ label {
 .member strong { display: block; font-weight: 500; color: var(--ink); }
 .member small { color: var(--muted); font-size: 0.8125rem; }
 
+.sync-status {
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+  padding: 1rem 1.125rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--cream);
+}
+
+.sync-status strong {
+  display: block;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.sync-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+  background: var(--muted);
+}
+
+.sync-status--live {
+  background: rgba(61, 90, 76, 0.08);
+  border-color: rgba(61, 90, 76, 0.2);
+}
+
+.sync-status--live .sync-dot {
+  background: #3d8f5f;
+  box-shadow: 0 0 0 4px rgba(61, 143, 95, 0.15);
+}
+
+.sync-status--offline .sync-dot { background: #b8a88a; }
+.sync-status--connecting .sync-dot { background: var(--gold); animation: pulse 1.2s ease infinite; }
+.sync-status--error {
+  background: rgba(184, 107, 74, 0.08);
+  border-color: rgba(184, 107, 74, 0.25);
+}
+.sync-status--error .sync-dot { background: var(--terracotta); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.contribution-feed {
+  display: grid;
+  gap: 0.875rem;
+}
+
+.feed-item {
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+.feed-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.feed-item-head strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.feed-amount {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--sage);
+}
+
+.feed-item p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.feed-item small {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
 .budget-table {
   width: 100%;
   border-collapse: collapse;

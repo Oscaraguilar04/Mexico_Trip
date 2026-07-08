@@ -28,4 +28,6 @@ Then open http://localhost:8080
 
 ## Notes
 
-The savings board stores data in the browser (localStorage). Use **Copy snapshot link** on the savings page to share the same budget numbers with the group.
+**Group contributions:** By default each phone saves separately. To make the site a shared communication board (everyone sees who contributed what, in real time), follow [SHARED_BOARD_SETUP.md](SHARED_BOARD_SETUP.md) or open `group-sync.html` on the live site.
+
+Until sync is enabled, use **Copy backup link** on the savings page to share numbers manually.
