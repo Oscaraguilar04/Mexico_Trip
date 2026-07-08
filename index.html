@@ -211,6 +211,19 @@
     </section>
 
     <section class="section">
+      <div class="container card pad share-card reveal" id="share">
+        <span class="kicker">Share with the group</span>
+        <h3>Trip website link</h3>
+        <p>Send this link to Oscar, Leah, Raul, Rosa, Lily, Mike, and Yolee so everyone can view the guides and savings board.</p>
+        <div class="share-url-row">
+          <input id="shareUrl" class="share-url-input" type="text" readonly value="https://oscaraguilar04.github.io/Mexico_Trip/" aria-label="Public trip site URL">
+          <button type="button" class="btn clay" id="copyShareUrl">Copy link</button>
+        </div>
+        <p class="helper">Bookmark on your phone home screen for quick access during the trip.</p>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container card pad sources reveal">
         <h3>Source notes</h3>
         <p style="margin-top:0.75rem">Guide content draws from Visit Mexico, Visit Colima, INEGI municipal references, and the U.S. State Department Mexico Travel Advisory. Photos sourced from Unsplash. Always verify official guidance before booking.</p>
@@ -229,5 +242,31 @@
   <script src="photos.js"></script>
   <script src="app.js"></script>
   <script src="animations.js"></script>
+  <script>
+    (function () {
+      var input = document.getElementById('shareUrl');
+      var btn = document.getElementById('copyShareUrl');
+      if (!input || !btn) return;
+
+      if (location.protocol.startsWith('http')) {
+        var path = location.pathname.replace(/index\.html$/, '');
+        if (!path.endsWith('/')) path += '/';
+        input.value = location.origin + path;
+      }
+
+      btn.addEventListener('click', function () {
+        input.select();
+        input.setSelectionRange(0, input.value.length);
+        navigator.clipboard.writeText(input.value).then(function () {
+          btn.textContent = 'Copied!';
+          setTimeout(function () { btn.textContent = 'Copy link'; }, 2000);
+        }).catch(function () {
+          document.execCommand('copy');
+          btn.textContent = 'Copied!';
+          setTimeout(function () { btn.textContent = 'Copy link'; }, 2000);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

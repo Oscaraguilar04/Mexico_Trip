@@ -2,11 +2,15 @@
 
 Public trip hub for **Oscar, Leah, Raul, Rosa, Lily, Mike, and Yolee** — Colima & Manzanillo travel guide plus group savings dashboard.
 
-## Live site
+## Live site (after one-time setup)
+
+**https://oscaraguilar04.github.io/Mexico_Trip/**
+
+Optional shorter URL after renaming the repo to `colima-2027`:
 
 **https://oscaraguilar04.github.io/colima-2027/**
 
-Share that link with everyone on the trip. Works on phone and desktop.
+See [PAGES_SETUP.md](PAGES_SETUP.md) for the 30-second publish steps (enable GitHub Pages → run workflow).
 
 ## Pages
 
@@ -24,4 +28,4 @@ Then open http://localhost:8080
 
 ## Notes
 
-The savings board stores data in the browser (localStorage). Use **Copy snapshot link** to share the same budget numbers with the group.
+The savings board stores data in the browser (localStorage). Use **Copy snapshot link** on the savings page to share the same budget numbers with the group.
