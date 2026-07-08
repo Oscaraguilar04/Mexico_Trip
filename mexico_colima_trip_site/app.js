@@ -14,9 +14,9 @@ const defaultData = {
     { id: cryptoId(), name: 'Traveler 7', color: 'river' }
   ],
   budget: [
-    { id: cryptoId(), label: 'Round-trip flights LAX ⇄ Colima / Manzanillo', amount: 4200 },
-    { id: cryptoId(), label: 'Lodging / Airbnb for group', amount: 1750 },
-    { id: cryptoId(), label: 'Food, snacks, coffee, family meals', amount: 1400 },
+    { id: cryptoId(), label: 'Round-trip flights LAX ⇄ Colima / Manzanillo (7 travelers)', amount: 4200 },
+    { id: cryptoId(), label: 'Lodging / Airbnb for 7', amount: 1750 },
+    { id: cryptoId(), label: 'Food, snacks, coffee, family meals (7 people)', amount: 1400 },
     { id: cryptoId(), label: 'Transportation in Mexico', amount: 700 },
     { id: cryptoId(), label: 'Activities, beaches, tours, entries', amount: 700 },
     { id: cryptoId(), label: 'Emergency buffer', amount: 700 }
@@ -48,9 +48,24 @@ function loadData(){
   try { return sanitize(JSON.parse(saved)); }
   catch(err){ return structuredClone(defaultData); }
 }
+const TRAVELER_COUNT = 7;
+
 function sanitize(data){
   const merged = {...structuredClone(defaultData), ...data};
-  if(!Array.isArray(merged.members) || merged.members.length === 0) merged.members = structuredClone(defaultData.members);
+  merged.travelers = TRAVELER_COUNT;
+  if(!Array.isArray(merged.members) || merged.members.length === 0){
+    merged.members = structuredClone(defaultData.members);
+  }
+  while(merged.members.length < TRAVELER_COUNT){
+    merged.members.push({
+      id: cryptoId(),
+      name: 'Traveler ' + (merged.members.length + 1),
+      color: 'river'
+    });
+  }
+  if(merged.members.length > TRAVELER_COUNT){
+    merged.members = merged.members.slice(0, TRAVELER_COUNT);
+  }
   if(!Array.isArray(merged.budget)) merged.budget = structuredClone(defaultData.budget);
   if(!Array.isArray(merged.contributions)) merged.contributions = [];
   return merged;
@@ -73,6 +88,7 @@ function renderTopFund(){
   document.querySelectorAll('[data-left]').forEach(el=>el.textContent = money(Math.max(cost-saved,0)));
   document.querySelectorAll('[data-percent]').forEach(el=>el.textContent = percent + '%');
   document.querySelectorAll('.progress-fill').forEach(el=>el.style.width = percent + '%');
+  document.querySelectorAll('[data-traveler-count]').forEach(el=>el.textContent = TRAVELER_COUNT);
 }
 
 function renderDashboard(){
@@ -122,7 +138,7 @@ function renderDashboard(){
   }
   const saved = totalSaved();
   const cost = totalCost();
-  const each = state.members.length ? cost / state.members.length : cost;
+  const each = cost / TRAVELER_COUNT;
   setText('#statTotal', money(cost));
   setText('#statSaved', money(saved));
   setText('#statLeft', money(Math.max(cost - saved, 0)));
