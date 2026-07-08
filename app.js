@@ -1,5 +1,5 @@
-const STORAGE_KEY = 'colimaTripGuide.v2';
-const LEGACY_STORAGE_KEY = 'colimaTripGuide.v1';
+const STORAGE_KEY = 'colimaTripGuide.v3';
+const LEGACY_STORAGE_KEYS = ['colimaTripGuide.v2', 'colimaTripGuide.v1'];
 const TRAVELER_COUNT = 7;
 const TRAVELER_NAMES = ['Oscar', 'Leah', 'Raul', 'Rosa', 'Lily', 'Mike', 'Yolee'];
 const MEMBER_COLORS = ['sun', 'clay', 'river', 'leaf', 'sun', 'clay', 'river'];
@@ -21,12 +21,12 @@ const defaultData = {
   travelers: TRAVELER_COUNT,
   members: buildMembers(),
   budget: [
-    { id: cryptoId(), label: 'Round-trip flights LAX ⇄ Colima / Manzanillo (Oscar, Leah, Raul, Rosa, Lily, Mike, Yolee)', amount: 4200 },
-    { id: cryptoId(), label: 'Lodging / Airbnb for 7 (Oscar · Leah · Raul · Rosa · Lily · Mike · Yolee)', amount: 1750 },
-    { id: cryptoId(), label: 'Food, snacks, coffee, family meals (7 people)', amount: 1400 },
-    { id: cryptoId(), label: 'Transportation in Mexico', amount: 700 },
-    { id: cryptoId(), label: 'Activities, beaches, tours, entries', amount: 700 },
-    { id: cryptoId(), label: 'Emergency buffer', amount: 700 }
+    { id: cryptoId(), label: 'Round-trip flights LAX ⇄ Colima / Manzanillo (deals + points)', amount: 2000 },
+    { id: cryptoId(), label: 'Lodging / Airbnb for 7 (shared stay savings)', amount: 900 },
+    { id: cryptoId(), label: 'Food, snacks, coffee, family meals (7 people)', amount: 700 },
+    { id: cryptoId(), label: 'Transportation in Mexico', amount: 400 },
+    { id: cryptoId(), label: 'Activities, beaches, tours, entries', amount: 350 },
+    { id: cryptoId(), label: 'Emergency buffer', amount: 150 }
   ],
   contributions: []
 };
@@ -51,21 +51,23 @@ function loadData(){
     }
   } catch(err){ console.warn('Could not import trip data', err); }
   const saved = localStorage.getItem(STORAGE_KEY);
-  if(!saved){
-    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
-    if(legacy){
-      try {
-        const migrated = sanitize(JSON.parse(legacy));
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
-        localStorage.removeItem(LEGACY_STORAGE_KEY);
-        return migrated;
-      } catch(err){ /* fall through to fresh defaults */ }
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
-    return structuredClone(defaultData);
+  if(saved){
+    try { return sanitize(JSON.parse(saved)); }
+    catch(err){ return structuredClone(defaultData); }
   }
-  try { return sanitize(JSON.parse(saved)); }
-  catch(err){ return structuredClone(defaultData); }
+  for(const legacyKey of LEGACY_STORAGE_KEYS){
+    const legacy = localStorage.getItem(legacyKey);
+    if(!legacy) continue;
+    try {
+      const migrated = sanitize(JSON.parse(legacy));
+      migrated.budget = structuredClone(defaultData.budget);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+      localStorage.removeItem(legacyKey);
+      return migrated;
+    } catch(err){ /* try next legacy key */ }
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
+  return structuredClone(defaultData);
 }
 
 function sanitize(data){
@@ -202,7 +204,7 @@ function setupDashboardForms(){
     resetDemo.addEventListener('click', ()=>{
       if(confirm('Reset this website back to the starter trip plan?')){
         localStorage.removeItem(STORAGE_KEY);
-        localStorage.removeItem(LEGACY_STORAGE_KEY);
+        LEGACY_STORAGE_KEYS.forEach(key => localStorage.removeItem(key));
         state = loadData();
         renderAll();
       }
