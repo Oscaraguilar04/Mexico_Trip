@@ -121,7 +121,7 @@ button, input, select, textarea { font: inherit; }
   font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: none;
-  color: rgba(255, 252, 248, 0.55);
+  color: rgba(255, 252, 248, 0.82);
   margin-top: 0.125rem;
   line-height: 1.45;
   max-width: 22rem;
@@ -133,7 +133,7 @@ button, input, select, textarea { font: inherit; }
   display: flex;
   gap: 1.5rem;
   font-size: 0.75rem;
-  color: rgba(255, 252, 248, 0.55);
+  color: rgba(255, 252, 248, 0.82);
   margin-bottom: 0.375rem;
   flex-wrap: wrap;
 }
@@ -167,7 +167,7 @@ button, input, select, textarea { font: inherit; }
   font-size: 0.8125rem;
   font-weight: 450;
   letter-spacing: 0.02em;
-  color: rgba(255, 252, 248, 0.6);
+  color: rgba(255, 252, 248, 0.88);
   border-radius: var(--radius);
   transition: color 0.3s, background 0.3s;
 }
@@ -347,7 +347,7 @@ button, input, select, textarea { font: inherit; }
   font-style: italic;
   color: var(--ink);
   white-space: nowrap;
-  opacity: 0.35;
+  opacity: 0.55;
 }
 
 .marquee-item em {
@@ -413,14 +413,117 @@ button, input, select, textarea { font: inherit; }
 
 .section--dark {
   background: var(--ink);
-  color: rgba(255, 252, 248, 0.7);
+  color: rgba(255, 252, 248, 0.88);
 }
 
 .section--dark .section-title h3,
 .section--dark h3,
-.section--dark h4 { color: var(--white); }
+.section--dark h4 {
+  color: var(--white);
+}
 
-.section--dark .section-title p { color: rgba(255, 252, 248, 0.45); }
+.section--dark .section-title p,
+.section--dark .card p,
+.section--dark .helper,
+.section--dark .sources p {
+  color: rgba(255, 252, 248, 0.82);
+}
+
+.section--dark .kicker {
+  color: #e8b89e;
+}
+
+.section--dark .card {
+  background: rgba(255, 252, 248, 0.07);
+  border-color: rgba(255, 252, 248, 0.14);
+}
+
+.section--dark .card h3,
+.section--dark .card h4 {
+  color: var(--white);
+}
+
+.section--dark .card p {
+  margin-top: 0.75rem;
+}
+
+.section--dark .card p strong {
+  color: var(--white);
+}
+
+.section--dark .card > .helper:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.section--dark label {
+  color: rgba(255, 252, 248, 0.78);
+}
+
+.section--dark input,
+.section--dark select,
+.section--dark textarea {
+  background: rgba(255, 252, 248, 0.96);
+  color: var(--ink);
+  border-color: rgba(255, 252, 248, 0.22);
+}
+
+.section--dark .budget-table th,
+.section--dark .budget-table td {
+  color: rgba(255, 252, 248, 0.88);
+  border-bottom-color: rgba(255, 252, 248, 0.14);
+}
+
+.section--dark .budget-table th {
+  color: rgba(255, 252, 248, 0.68);
+}
+
+.section--dark .budget-table tr:last-child th {
+  color: var(--white);
+}
+
+.section--dark hr {
+  border-top-color: rgba(255, 252, 248, 0.14);
+}
+
+.section--dark .alert {
+  background: rgba(255, 252, 248, 0.1);
+  border-left-color: #e8b89e;
+  color: rgba(255, 252, 248, 0.92);
+}
+
+.section--dark .alert strong {
+  color: #f5d4c4;
+}
+
+.section--dark .btn.secondary {
+  color: var(--white);
+  border-color: rgba(255, 252, 248, 0.4);
+}
+
+.section--dark .btn.secondary:hover {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--white);
+}
+
+.section--dark .map-dot {
+  background: rgba(255, 252, 248, 0.1);
+  border-color: rgba(255, 252, 248, 0.16);
+  color: rgba(255, 252, 248, 0.95);
+}
+
+.section--dark .map-dot:hover {
+  background: rgba(255, 252, 248, 0.16);
+  border-color: #e8b89e;
+}
+
+.section--dark .map-dot small {
+  color: rgba(255, 252, 248, 0.72);
+}
+
+.section--dark [data-traveler-roster] {
+  color: rgba(255, 252, 248, 0.82);
+}
 
 /* ── Cards & pins (Pinterest style) ───────────────────────────────────── */
 
@@ -903,8 +1006,13 @@ hr {
   padding: 1.25rem 1.5rem;
   background: var(--white);
   font-size: 0.9375rem;
-  color: var(--muted);
-  font-weight: 300;
+  color: var(--ink-soft);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.hero-card .caption strong {
+  color: var(--ink);
 }
 
 /* ── Footer ───────────────────────────────────────────────────────────── */
@@ -913,7 +1021,7 @@ hr {
   margin-top: 0;
   padding: 4rem 0 2rem;
   background: var(--ink);
-  color: rgba(255, 252, 248, 0.45);
+  color: rgba(255, 252, 248, 0.82);
 }
 
 .footer .container {
@@ -935,6 +1043,7 @@ hr {
 }
 
 .footer a {
+  color: rgba(255, 252, 248, 0.9);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.3s;
@@ -946,6 +1055,11 @@ hr {
   padding-top: 1.5rem;
   font-size: 0.75rem;
   letter-spacing: 0.04em;
+  color: rgba(255, 252, 248, 0.68);
+}
+
+.footer [data-traveler-roster] {
+  color: rgba(255, 252, 248, 0.82);
 }
 
 /* ── Scroll reveal ────────────────────────────────────────────────────── */
